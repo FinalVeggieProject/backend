@@ -9,4 +9,4 @@ const influencerSchema = new Schema ({
 
 const Influencer = mongoose.model('Influencer', influencerSchema)
 
-mongoose.model.exports = Influencer
+module.exports = Influencer
