@@ -13,6 +13,7 @@ const session       = require('express-session');
 const passport      = require('passport');
 const cors          = require('cors');
 const bcrypt        = require('bcryptjs');
+const flash         = require('connect-flash');
 const LocalStrategy = require('passport-local').Strategy;
 
 const User          = require('./models/User');
@@ -42,6 +43,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(session({ secret: 'ourPassword', resave: true, saveUninitialized: true }));
+app.use(flash());
 
 //Middleware para serializar al usuario
 passport.serializeUser((user, callback) => {
@@ -56,13 +58,16 @@ passport.deserializeUser((id, callback) => {
 //Middleware del Strategy
 passport.use(
 	new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
+    if(username==='' || password===''){
+      return next(null, false, { message: 'Por favor, completa usuario y contraseña.' });
+    }
 		User.findOne({ username })
 			.then((user) => {
 				if (!user) {
-					return next(null, false, { message: 'Incorrect username' });
+					return next(null, false, { message: 'Usuario o contraseña incorrectos' });
 				}
 				if (!bcrypt.compareSync(password, user.password)) {
-					return next(null, false, { message: 'Incorrect password' });
+					return next(null, false, { message: 'Usuario o contraseña incorrectos' });
 				}
 				return next(null, user);
 			})
