@@ -9,8 +9,8 @@ const userSchema = new Schema ({
   birthdate: {type: Date},
   name: {type: String},
   lastName: {type: String}
-})
+});
 
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema);
 
-module.exports = User
+module.exports = User;

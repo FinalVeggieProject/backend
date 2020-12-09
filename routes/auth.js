@@ -8,10 +8,10 @@ const User = require('../models/User');
 const { json } = require('body-parser');
 
 authRoutes.post('/signup', (req, res) => {
-  const {username, password, email} = req.body;
+  const {username, password, email, image} = req.body;
 
 	if (!username || !password || !email) {
-    res.send({ message: 'Todos los campos son obligatorios, por favor introdúcelos.' })
+    res.send({ message: 'Nombre de usuario, e-amil y contraseña son obligatorios, por favor introdúcelos.' })
 		return;
   }
   
@@ -59,7 +59,7 @@ authRoutes.post('/signup', (req, res) => {
       birthdate: '',
       name: '',
       lastName: '',
-      image: ''
+      image: image
 		});        
 
 
@@ -91,7 +91,6 @@ authRoutes.post('/login', (req, res, next) => {
           return;
       }
       if (!theUser) {
-          console.log(failureDetails);
           res.send({message: failureDetails.message});
           return;
       }
@@ -108,7 +107,6 @@ authRoutes.post('/logout', (req, res, next) => {
 authRoutes.get('/loggedin', (req, res, next) => {
   // req.isAuthenticated() is defined by passport
   if (req.isAuthenticated()) {
-    console.log(req.user);
       res.status(200).json(req.user);
       return;
   }
