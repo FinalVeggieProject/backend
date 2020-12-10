@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt  = require('bcryptjs');
 const Recipe  = require('../models/Recipe');
+const Restaurant = require('../models/Restaurant')
 const User    = require('../models/User');
 const router  = express.Router();
 
@@ -79,5 +80,16 @@ router.get('/recipe/:id', (req, res)=>{
       res.send(err);
     })
 });
+
+router.post('/addrestaurant', (req,res)=>{
+  const {username, email, password, address, schedule, contact, typeOfFood, recomendations} = req.body;
+  Restaurant.create({address, schedule, contact, typeOfFood, recomendations: req.user.username, image})
+    .then((result)=>{
+      res.send(result);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+})
 
 module.exports = router;

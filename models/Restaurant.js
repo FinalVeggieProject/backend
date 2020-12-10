@@ -4,7 +4,12 @@ const Schema   = mongoose.Schema;
 const restaurantSchema = new Schema ({
   username: {type: String, required: true},
   email: {type: String, required: true},
-  password: {type: String, required: true}
+  password: {type: String, required: true},
+  address: {type: String, required: true},
+  schedule: {type: String, required: true},
+  contact: {type: Number, required: true},
+  typeOfFood: {type: String, required: true},
+  recomendations: {type: String, required: true}
 })
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema)
