@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const restaurantSchema = new Schema ({
-  username: {type: String, required: true},
-  email: {type: String, required: true},
-  password: {type: String, required: true},
-  address: {type: String, required: true},
-  schedule: {type: String, required: true},
-  contact: {type: Number, required: true},
-  typeOfFood: {type: String, required: true},
-  recomendations: {type: String, required: true}
+  name: {type: String, required: true},
+  owner: {type: String},
+  address: {type: String},
+  schedule: {type: String},
+  contact: {type: Number},
+  typeOfFood: {type: String},
+  recomendations: {type: String},
+  webUrl: {type: String}
 })
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema)
