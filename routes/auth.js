@@ -11,7 +11,7 @@ authRoutes.post('/signup', (req, res) => {
   const {username, password, email, image} = req.body;
 
 	if (!username || !password || !email) {
-    res.send({ message: 'Nombre de usuario, e-amil y contraseña son obligatorios, por favor introdúcelos.' })
+    res.send({ message: 'Nombre de usuario, e-mail y contraseña son obligatorios, por favor introdúcelos.' })
 		return;
   }
   
