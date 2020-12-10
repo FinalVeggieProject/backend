@@ -82,9 +82,8 @@ router.get('/recipe/:id', (req, res)=>{
 });
 
 router.post('/addrestaurant', (req,res)=>{
-  const {name, address, schedule, contact, typeOfFood, recomendations, webUrl} = req.body;
-  console.log(req.body);
-  Restaurant.create({name, owner: req.user._id, address, schedule, contact, typeOfFood, recomendations, webUrl, image})
+  const {name, address, schedule, contact, typeOfFood, recomendations, webUrl, image} = req.body;
+  Restaurant.create({name, owner: req.user.id, address, schedule, contact, typeOfFood, recomendations, webUrl, image})
     .then((result)=>{
       res.send(result);
     })
