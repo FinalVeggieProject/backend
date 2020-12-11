@@ -104,4 +104,16 @@ router.get('/alluserrestaurants', (req,res)=>{
   }
 })
 
+router.get('/restaurant/:id', (req, res)=>{
+  const id = req.params.id;
+  Restaurant.find({_id: id})
+    .then((result)=>{
+      console.log(result);
+      res.send(result);
+    })
+    .catch((err)=>{
+      res.send(err);
+    })
+});
+
 module.exports = router;
