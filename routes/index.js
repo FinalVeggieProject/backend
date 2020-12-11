@@ -92,4 +92,16 @@ router.post('/addrestaurant', (req,res)=>{
     })
 })
 
+router.get('/alluserrestaurants', (req,res)=>{
+  if(req.isAuthenticated()){
+    Restaurant.find({owner: req.user._id})
+    .then((result)=>{
+      res.send(result);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+  }
+})
+
 module.exports = router;
