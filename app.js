@@ -19,7 +19,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const User          = require('./models/User');
 
 mongoose
-.connect(`mongodb+srv://veggieapp:${process.env.PASS}@cluster0.kjwhe.mongodb.net/${process.env.USER}?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
+.connect(`mongodb+srv://veggieapp:${process.env.PASS}@cluster0.kjwhe.mongodb.net/Veggie?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(x => {
   console.log(chalk.greenBright.inverse.bold(`Connected to Mongo! Database name: "${x.connections[0].name}"`))
 })
