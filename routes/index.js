@@ -101,7 +101,17 @@ router.post('/recipe/:id', (req, res)=>{
   const {id} = req.body;
   Recipe.deleteOne({_id: id})
     .then((result)=>{
-      console.log(result);
+      res.send(result);
+    })
+    .catch((err)=>{
+      res.send(err);
+    })
+});
+
+router.post('/restaurant/:id', (req, res)=>{
+  const {id} = req.body;
+  Restaurant.deleteOne({_id: id})
+    .then((result)=>{
       res.send(result);
     })
     .catch((err)=>{
