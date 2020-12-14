@@ -45,14 +45,13 @@ router.put('/editrecipe/:id', (req, res)=>{
       });
 });
 
-router.put('/edit-restaurant', (req, res)=>{
+router.put('/editrestaurant/:id', (req, res)=>{
   const {valueToEdit, restaurantToEdit} = req.body;
-    Restaurant.updateOne({_id: restaurantToEdit.id}, {[valueToEdit]: restaurantToEdit[valueToEdit]})
-      .then(()=>{
-        Restaurant.find({_id: restaurantToEdit.id})
-          .then((result)=>{
-            res.send(result);
-          });
+  const id = req.params.id;
+  console.log(valueToEdit, restaurantToEdit, id);
+    Restaurant.updateOne({_id: id}, {[valueToEdit]: restaurantToEdit[valueToEdit]})
+      .then((result)=>{
+        res.send(result)
       })
       .catch((err)=>{
         res.send(err);
@@ -96,15 +95,25 @@ router.get('/recipe/:id', (req, res)=>{
 
 router.get('/displayrecipe/:id', (req,res)=>{
   const id = req.params.id;
-  console.log(id);
   Recipe.find({_id: id})
     .then((result)=>{
       res.send(result)
     })
     .catch((err)=>{
       res.send(err)
+    });
+});
+
+router.get('/displayrestaurant/:id', (req,res)=>{
+  const id = req.params.id;
+  Restaurant.find({_id: id})
+    .then((result)=>{
+      res.send(result)
     })
-})
+    .catch((err)=>{
+      res.send(err)
+    });
+});
 
 router.post('/recipe/:id', (req, res)=>{
   const {id} = req.body;
