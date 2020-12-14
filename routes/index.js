@@ -33,15 +33,12 @@ router.put('/edit-user', (req, res)=>{
   }
 });
 
-router.put('/edit-recipe', (req, res)=>{
+router.put('/editrecipe/:id', (req, res)=>{
   const {valueToEdit, recipeToEdit} = req.body;
- console.log(recipeToEdit.id);
-    Recipe.updateOne({_id: recipeToEdit.id}, {[valueToEdit]: recipeToEdit[valueToEdit]})
-      .then(()=>{
-        Recipe.find({_id: recipeToEdit.id})
-          .then((result)=>{
-            res.send(result);
-          });
+  const id = req.params.id
+    Recipe.updateOne({_id: id}, {[valueToEdit]: recipeToEdit[valueToEdit]})
+      .then((result)=>{
+        res.send(result)
       })
       .catch((err)=>{
         res.send(err);
@@ -96,6 +93,18 @@ router.get('/recipe/:id', (req, res)=>{
       res.send(err);
     })
 });
+
+router.get('/displayrecipe/:id', (req,res)=>{
+  const id = req.params.id;
+  console.log(id);
+  Recipe.find({_id: id})
+    .then((result)=>{
+      res.send(result)
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+})
 
 router.post('/recipe/:id', (req, res)=>{
   const {id} = req.body;
