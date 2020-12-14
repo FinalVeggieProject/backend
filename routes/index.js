@@ -10,6 +10,26 @@ router.get('/', (req, res, next) => {
   res.send('home');
 });
 
+router.get('/getallrecipes', (req, res)=>{
+  Recipe.find({},{},{sort:{date: -1}, limit: 6})
+    .then((result)=>{
+      res.send(result);
+    })
+    .catch((err)=>{
+      res.send(err);
+    })
+});
+
+router.get('/getallrestaurants', (req, res)=>{
+  Restaurant.find({},{},{sort:{date: -1}, limit: 6})
+    .then((result)=>{
+      res.send(result);
+    })
+    .catch((err)=>{
+      res.send(err);
+    })
+});
+
 router.put('/edit-user', (req, res)=>{
   const {valueToEdit, userToEdit} = req.body;
   if(valueToEdit==='password'){
@@ -60,7 +80,7 @@ router.put('/editrestaurant/:id', (req, res)=>{
 
 router.post('/addrecipe', (req, res)=>{
   const {title, ingredients, process, difficulty, duration, image} = req.body;
-  Recipe.create({title, ingredients, process, difficulty, duration, author: req.user.username, image})
+  Recipe.create({title, ingredients, process, difficulty, duration, author: req.user.username, image, date: Date.now()})
     .then((result)=>{
       res.send(result);
     })
@@ -139,7 +159,7 @@ router.post('/restaurant/:id', (req, res)=>{
 
 router.post('/addrestaurant', (req,res)=>{
   const {name, address, schedule, contact, typeOfFood, recomendations, webUrl, image} = req.body;
-  Restaurant.create({name, owner: req.user.id, address, schedule, contact, typeOfFood, recomendations, webUrl, image})
+  Restaurant.create({name, owner: req.user.id, address, schedule, contact, typeOfFood, recomendations, webUrl, image, date: Date.now()})
     .then((result)=>{
       res.send(result);
     })

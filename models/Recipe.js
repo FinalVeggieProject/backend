@@ -8,7 +8,8 @@ const recipeSchema = new Schema ({
   difficulty: {type: Number},
   duration: {type: Number},
   author: {type: String},
-  image: {type: String}
+  image: {type: String},
+  date: {type: Date}
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
