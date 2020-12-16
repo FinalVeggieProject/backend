@@ -113,6 +113,24 @@ app.use((req, res, next)=>{
   next();
 })
 
+// CONFIG COOKIE SAMESITE
+
+app.set('trust proxy', 1)
+app.use(cookieSession({
+    name:'session',
+    keys: ['key1', 'key2'],
+    sameSite: 'none',
+    secure: true
+}))
+app.use(session ({
+    secret: `${process.env.DATABASE}`,
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        sameSite: 'none',
+        secure: true
+    }
+}))
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
