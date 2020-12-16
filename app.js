@@ -106,7 +106,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // });
 app.use(cors({
   credentials: true,
-  origin: ["https://veggieplanet.netlify.app", "http://localhost:3001"]
+  origin: ["https://veggieplanet.netlify.app/", "http://localhost:3001"]
 }));
 app.use((req, res, next)=>{
   res.locals.user = req.user;
