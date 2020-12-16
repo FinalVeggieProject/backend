@@ -124,7 +124,7 @@ app.use(cookieSession({
     secure: true
 }))
 app.use(session ({
-    secret: `${process.env.DATABASE}`,
+    secret: `${process.env.PASS}`,
     resave: true,
     saveUninitialized: true,
     cookie: {
