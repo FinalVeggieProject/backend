@@ -15,6 +15,7 @@ const cors          = require('cors');
 const bcrypt        = require('bcryptjs');
 const flash         = require('connect-flash');
 const LocalStrategy = require('passport-local').Strategy;
+const cookieSession = require('cookie-session')
 
 const User          = require('./models/User');
 
