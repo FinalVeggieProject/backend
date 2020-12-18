@@ -41,7 +41,7 @@ router.get('/getallrestaurants', (req, res)=>{
 });
 
 router.get('/getglobalrestaurants', (req, res)=>{
-  Restaurant.find({},{},{sort:{title: 1}})
+  Restaurant.find({},{},{sort:{name: 1}})
     .then((result)=>{
       res.send(result);
     })
