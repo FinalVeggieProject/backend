@@ -40,6 +40,16 @@ router.get('/getallrestaurants', (req, res)=>{
     })
 });
 
+router.get('/getglobalrestaurants', (req, res)=>{
+  Restaurant.find({},{},{sort:{title: 1}})
+    .then((result)=>{
+      res.send(result);
+    })
+    .catch((err)=>{
+      res.send(err);
+    })
+});
+
 router.put('/edit-user', (req, res)=>{
   const {valueToEdit, userToEdit} = req.body;
   if(valueToEdit==='password'){

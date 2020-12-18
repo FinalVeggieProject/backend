@@ -51,7 +51,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(session({ secret: 'ourPassword', resave: true, saveUninitialized: true }));
+
 app.use(flash());
 
 //Middleware para serializar al usuario
