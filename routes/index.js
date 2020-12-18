@@ -20,6 +20,16 @@ router.get('/getallrecipes', (req, res)=>{
     })
 });
 
+router.get('/getglobalrecipes', (req, res)=>{
+  Recipe.find({},{},{sort:{title: 1}})
+    .then((result)=>{
+      res.send(result);
+    })
+    .catch((err)=>{
+      res.send(err);
+    })
+});
+
 router.get('/getallrestaurants', (req, res)=>{
   Restaurant.find({},{},{sort:{date: -1}, limit: 6})
     .then((result)=>{
